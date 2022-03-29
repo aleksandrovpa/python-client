@@ -1,0 +1,62 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-client
+  namespace: default
+  labels:
+    app: python-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-client
+  template:
+    metadata:
+      labels:
+        app: python-client
+    spec:
+      serviceAccountName: python-client
+      containers:
+      - name: python-client
+        image: skaalex/python_client:0.0.2
+        ports:
+        - containerPort: 8000
+        env:
+        - name: "server_ip"
+          value: "python-server"
+        - name: "server_port"
+          value: "5555"
+        # livenessProbe:
+        #   httpGet:
+        #     path: /health
+        #     port: 8000
+        # readinessProbe:
+        #   httpGet:
+        #     path: /health
+        #     port: 8000
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 100m
+            memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: python-client
+  namespace: default
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8000
+  selector:
+    app: python-client
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: python-client
+  namespace: default
