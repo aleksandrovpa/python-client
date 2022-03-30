@@ -22,4 +22,4 @@ There are several metrics which could help you to monitoring the application on 
 
 ### Healthchecks
 
-The application has a `localhost:8000/health` route for check liveness and rediness status of app
+The application has a `localhost:8000/health` route for check liveness and readiness status of app
