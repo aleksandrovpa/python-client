@@ -1,0 +1,16 @@
+name: Build_and_deploy_to_stage
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v2
+
+    # - name: Deploy to prod
+    #   run: |
+    #     mkdir -p ~/.kube/
+    #     echo ${{ kube_config_prod }} | base64 --decode >~/.kube/config
+    #     kubectl apply -f .k8s/prod.yaml
