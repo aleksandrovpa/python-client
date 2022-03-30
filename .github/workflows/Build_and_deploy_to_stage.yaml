@@ -30,6 +30,12 @@ jobs:
         docker push ${{ secrets.DOCKER_LOGIN }}/python_server:${{ github.event.inputs.image_version }}
         docker push ${{ secrets.DOCKER_LOGIN }}/python_server:latest
     
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v2
+
     # - name: Deploy to stage
     #   run: |
     #     mkdir -p ~/.kube/
