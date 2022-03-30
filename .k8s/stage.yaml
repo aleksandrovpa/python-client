@@ -16,7 +16,6 @@ spec:
       labels:
         app: python-client
     spec:
-      serviceAccountName: python-client
       containers:
       - name: python-client
         image: skaalex/python_client:0.0.2
@@ -54,9 +53,3 @@ spec:
     targetPort: 8000
   selector:
     app: python-client
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: python-client
-  namespace: default
