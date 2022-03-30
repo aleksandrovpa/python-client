@@ -10,12 +10,12 @@ import os
 
 app = Flask(__name__)
 life = 5
-REQUEST_SUCCESS_COUNTER = Counter('request_sucsess', 'Success requests count')
+REQUEST_SUCCESS_COUNTER = Counter('request_success', 'Success requests count')
 REQUEST_ERROR_COUNTER = Counter('request_error', 'Error requests count')
 
 REQUEST_TIME = Summary('request_processing_seconds', 'Time spent processing request')
 REQUEST_TIME_HISTOGRAM = Histogram(
-    'request_time_histogram', 'Time spent processing request', buckets=(0, 0.5, 1, 2, 5, 6, 10))
+    'request_time_histogram', 'Histogram for the duration in seconds', buckets=(0, 0.5, 1, 2, 5, 6, 10))
 
 
 @REQUEST_TIME.time()
